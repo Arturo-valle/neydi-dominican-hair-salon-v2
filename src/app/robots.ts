@@ -1,0 +1,15 @@
+import { business } from "@/lib/data";
+
+export const dynamic = "force-static";
+
+export default function robots() {
+  return {
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+      },
+    ],
+    sitemap: `https://${business.domain}/sitemap.xml`,
+  };
+}

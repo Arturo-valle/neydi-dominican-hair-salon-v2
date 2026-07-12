@@ -1,26 +1,465 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ═══════════════════════════════════════════════════
+   NEYDI DOMINICAN HAIR SALON — Design System v3
+   Cinematic / Luxury-Brand Language
+   Dials: VARIANCE=8  MOTION=7  DENSITY=4
+   Font: Playfair Display (serif) + Geist (sans)
+   ═══════════════════════════════════════════════════ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-carbon: #0a0a0a;
+  --color-deep-teal: #0d3b3b;
+  --color-deep-teal-light: #145555;
+  --color-gold: #c4963d;
+  --color-gold-light: #d4a94e;
+  --color-gold-dim: rgba(196, 150, 61, 0.15);
+  --color-warm-white: #faf8f5;
+  --color-charcoal: #2a2a2a;
+  --color-smoke: #f0ede8;
+  --color-mirror: #e8e4dd;
+  --color-glass: rgba(255, 255, 255, 0.06);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-body: "Geist", system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ─── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: var(--color-warm-white);
+  background-color: var(--color-carbon);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-carbon);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-up, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════
+   HERO — Cinematic Full-Viewport
+   ═══════════════════════════════════════ */
+
+.hero-section {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-carbon);
+}
+
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(13, 59, 59, 0.5), transparent),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(196, 150, 61, 0.1), transparent),
+    radial-gradient(ellipse 40% 40% at 90% 20%, rgba(196, 150, 61, 0.08), transparent);
+  animation: meshPulse 12s ease-in-out infinite alternate;
+}
+
+@keyframes meshPulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* Honeycomb texture */
+.honeycomb-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23c4963d' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Grain overlay — fixed, pointer-events-none */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Gold accent line */
+.accent-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+}
+
+/* ═══════════════════════════════════════
+   MARQUEE — Kinetic Text Strip
+   ═══════════════════════════════════════ */
+
+.marquee-strip {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════
+   STICKY SCROLL STACK
+   ═══════════════════════════════════════ */
+
+.stack-card {
+  will-change: transform, opacity;
+}
+
+/* ═══════════════════════════════════════
+   HORIZONTAL PAN
+   ═══════════════════════════════════════ */
+
+.pan-track {
+  will-change: transform;
+}
+
+.pan-panel {
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════
+   GLASS CARDS
+   ═══════════════════════════════════════ */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(196, 150, 61, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Service card on light bg */
+.service-card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.service-card:hover {
+  border-color: rgba(196, 150, 61, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+}
+
+.service-card:hover .service-card-accent {
+  width: 100%;
+}
+
+.service-card-accent {
+  height: 3px;
+  width: 40px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════
+   CINEMATIC BUTTONS
+   ═══════════════════════════════════════ */
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-carbon);
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(196, 150, 61, 0.4);
+}
+
+.btn-gold:hover::before {
+  opacity: 1;
+}
+
+.btn-gold:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-gold > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-warm-white);
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.btn-ghost:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ═══════════════════════════════════════
+   SPECIALS — Strikethrough Price
+   ═══════════════════════════════════════ */
+
+.special-card {
+  background: rgba(13, 59, 59, 0.2);
+  border: 1px solid rgba(196, 150, 61, 0.15);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.special-card:hover {
+  border-color: rgba(196, 150, 61, 0.4);
+  background: rgba(13, 59, 59, 0.3);
+  transform: translateY(-4px);
+}
+
+.special-price-original {
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 1.125rem;
+}
+
+.special-price-new {
+  color: var(--color-gold);
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+/* ═══════════════════════════════════════
+   SECTION BACKGROUNDS
+   ═══════════════════════════════════════ */
+
+.section-dark {
+  background: var(--color-carbon);
+  color: var(--color-warm-white);
+}
+
+.section-light {
+  background: var(--color-warm-white);
+  color: var(--color-carbon);
+}
+
+.section-smoke {
+  background: var(--color-smoke);
+  color: var(--color-carbon);
+}
+
+.section-gradient {
+  background: linear-gradient(165deg, var(--color-deep-teal), var(--color-carbon) 70%);
+  color: var(--color-warm-white);
+}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY HELPERS
+   ═══════════════════════════════════════ */
+
+.text-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.text-display-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+
+.text-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  max-width: 55ch;
+}
+
+.text-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-gold);
+}
+
+/* ═══════════════════════════════════════
+   MASONRY GALLERY
+   ═══════════════════════════════════════ */
+
+.masonry-grid {
+  columns: 3;
+  column-gap: 16px;
+}
+
+.masonry-grid > * {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 1023px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 639px) {
+  .masonry-grid {
+    columns: 1;
+  }
+}
+
+/* ═══════════════════════════════════════
+   LIGHTBOX
+   ═══════════════════════════════════════ */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════
+   COUNTER ANIMATION
+   ═══════════════════════════════════════ */
+
+.price-counter {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════
+   SPLIT CTA
+   ═══════════════════════════════════════ */
+
+.split-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80dvh;
+}
+
+@media (max-width: 767px) {
+  .split-cta {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE HELPERS
+   ═══════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  .text-display {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}
+
+/* ═══════════════════════════════════════
+   MISC
+   ═══════════════════════════════════════ */
+
+img {
+  content-visibility: auto;
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 150, 61, 0.2), transparent);
 }
