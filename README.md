@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Neydi Dominican Hair Salon v2
+
+> Temple Hills, Maryland — Award-ready cinematic website
+
+**Live:** [https://neydi-salon-v2.pages.dev](https://neydi-salon-v2.pages.dev/en/)
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router, static export)
+- **Styling:** Tailwind CSS v4
+- **Motion:** GSAP ScrollTrigger + Motion (Framer Motion)
+- **Deployment:** Cloudflare Pages
+- **Language:** TypeScript
+
+## Features
+
+- Cinematic hero with parallax background
+- GSAP StickyStack scroll animation (3 unique cards)
+- Horizontal pan gallery for services
+- Animated price counters
+- CSS masonry gallery with lightbox
+- Split-screen CTA with parallax
+- Kinetic marquee text strip
+- Bilingual (EN/ES) with 21 services + exact pricing
+- SEO: JSON-LD HairSalon, OG tags, hreflang, sitemap
+- Accessibility: prefers-reduced-motion, ARIA, WCAG
+- 16 optimized Unsplash images
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build & Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npx wrangler pages deploy out --project-name=neydi-salon-v2
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── [lang]/          # Bilingual routes (en/es)
+│   │   ├── page.tsx     # Home (7 cinematic acts)
+│   │   ├── services/    # Service catalog
+│   │   ├── gallery/     # Masonry gallery + lightbox
+│   │   ├── about/       # Story + promise
+│   │   ├── book/        # Appointment form
+│   │   └── visit/       # Location + hours
+│   ├── globals.css      # Design system
+│   └── layout.tsx       # Root layout
+├── components/
+│   ├── ScrollAnimations.tsx  # GSAP components
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   └── ResponsiveImage.tsx
+└── lib/
+    ├── data.ts          # 21 services, prices, hours
+    ├── i18n.ts          # EN/ES translations
+    ├── types.ts         # TypeScript types
+    └── jsonld.ts        # SEO structured data
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Private — Neydi Dominican Hair Salon
