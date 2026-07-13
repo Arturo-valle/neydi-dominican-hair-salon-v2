@@ -15,7 +15,7 @@ import {
   HeroReveal,
   ParallaxImage,
   StickyStack,
-  HorizontalPan,
+  HorizontalCarousel,
   MarqueeStrip,
   AnimatedCounter,
   ImageReveal,
@@ -177,7 +177,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </StickyStack>
       </section>
 
-      {/* ═══ ACT 4: SERVICES — Horizontal Pan Gallery ═══ */}
+      {/* ═══ ACT 4: SERVICES — Featured Carousel ═══ */}
       <section className="section-smoke">
         <ScrollReveal className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-28 md:pt-36 pb-12">
           <div className="accent-line mb-6" />
@@ -193,13 +193,13 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
         </ScrollReveal>
 
-        {/* Horizontal scroll gallery for featured services */}
-        <HorizontalPan>
+        {/* Horizontal scroll carousel — no scroll hijack */}
+        <HorizontalCarousel className="pb-16 px-6 md:px-12 lg:px-20">
           {featured.map((service, i) => {
             const imgSrc = getServiceImage(service.slug);
             return (
-              <div key={service.slug} className="pan-panel px-8 md:px-16">
-                <div className="max-w-6xl w-full grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+              <div key={service.slug} className="snap-center flex-shrink-0 w-[85vw] md:w-[70vw] lg:w-[50vw] pr-6">
+                <div className="grid md:grid-cols-2 gap-6 lg:gap-10 items-center bg-white rounded-2xl overflow-hidden border border-carbon/5">
                   <div className={`aspect-[4/5] rounded-2xl overflow-hidden ${i % 2 === 1 ? "md:order-2" : ""}`}>
                     <img
                       src={imgSrc}
@@ -210,7 +210,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                       loading="lazy"
                     />
                   </div>
-                  <div className={i % 2 === 1 ? "md:order-1" : ""}>
+                  <div className={`p-6 lg:p-10 ${i % 2 === 1 ? "md:order-1" : ""}`}>
                     <p className="text-eyebrow mb-4 opacity-60">{locale === "es" ? "Servicio" : "Service"}</p>
                     <h3 className="font-display text-3xl md:text-4xl text-carbon mb-4">
                       {service.name[locale]}
@@ -229,7 +229,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               </div>
             );
           })}
-        </HorizontalPan>
+        </HorizontalCarousel>
       </section>
 
       {/* ═══ ACT 5: SPECIALS — Animated Counters, Asymmetric ═══ */}

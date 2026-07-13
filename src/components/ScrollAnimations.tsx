@@ -108,6 +108,7 @@ export function StaggerReveal({
 
 /* ═══════════════════════════════════════════════════
    HERO REVEAL — cinematic clipPath + translate
+   FIX: starts visible, animates only if motion OK
    ═══════════════════════════════════════════════════ */
 export function HeroReveal({
   children,
@@ -119,29 +120,54 @@ export function HeroReveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [animated, setAnimated] = useState(false);
 
   useEffect(() => {
     if (!ref.current) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const anim = gsap.fromTo(
-      ref.current,
-      { opacity: 0, y: 40, clipPath: "inset(100% 0% 0% 0%)" },
-      {
-        opacity: 1,
-        y: 0,
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 1.4,
-        delay,
-        ease: "power4.out",
+    // If reduced motion, stay visible
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (ref.current) {
+        ref.current.style.opacity = "1";
+        ref.current.style.clipPath = "none";
       }
-    );
+      return;
+    }
 
-    return () => { anim.kill(); };
-  }, [delay]);
+    // Set initial state via GSAP (not CSS) to avoid flash
+    gsap.set(ref.current, {
+      opacity: 0,
+      y: 40,
+      clipPath: "inset(100% 0% 0% 0%)",
+    });
+
+    const anim = gsap.to(ref.current, {
+      opacity: 1,
+      y: 0,
+      clipPath: "inset(0% 0% 0% 0%)",
+      duration: 1.4,
+      delay,
+      ease: "power4.out",
+      onComplete: () => setAnimated(true),
+    });
+
+    // Safety: if animation doesn't fire within 3s, force visible
+    const safety = setTimeout(() => {
+      if (ref.current && !animated) {
+        ref.current.style.opacity = "1";
+        ref.current.style.clipPath = "none";
+        ref.current.style.transform = "none";
+      }
+    }, 3000);
+
+    return () => { anim.kill(); clearTimeout(safety); };
+  }, [delay, animated]);
 
   return (
-    <div ref={ref} className={className}>
+    <div
+      ref={ref}
+      className={className}
+      style={{ opacity: 0 }} // start hidden, GSAP takes over immediately
+    >
       {children}
     </div>
   );
@@ -206,7 +232,6 @@ export function ParallaxImage({
 
 /* ═══════════════════════════════════════════════════
    STICKY SCROLL STACK — cards pin and stack
-   Canonical taste-skill pattern (Section 5.A)
    ═══════════════════════════════════════════════════ */
 export function StickyStack({
   children,
@@ -258,8 +283,39 @@ export function StickyStack({
 }
 
 /* ═══════════════════════════════════════════════════
-   HORIZONTAL PAN — vertical scroll → horizontal move
-   Canonical taste-skill pattern (Section 5.B)
+   HORIZONTAL SCROLL CAROUSEL — CSS scroll-snap
+   Replaces HorizontalPan (no scroll hijack)
+   ═══════════════════════════════════════════════════ */
+export function HorizontalCarousel({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={ref}
+      className={`overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory ${className}`}
+      style={{
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+        WebkitOverflowScrolling: "touch",
+      }}
+    >
+      <style>{`.horizontal-carousel::-webkit-scrollbar { display: none; }`}</style>
+      <div className="flex">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   HORIZONTAL PAN — DEPRECATED: scroll hijack
+   Kept for backward compat, prefer HorizontalCarousel
    ═══════════════════════════════════════════════════ */
 export function HorizontalPan({
   children,
