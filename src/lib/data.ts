@@ -455,6 +455,48 @@ export const specials: Special[] = [
   },
 ];
 
+// --- Service Images ---
+export const serviceImageMap: Record<string, string> = {
+  "wash-and-set": "/images/svc-wash-set.jpg",
+  "wash-and-blow-dry": "/images/svc-blow-dry.jpg",
+  "wash-only": "/images/svc-wash-only.jpg",
+  "deep-conditioner": "/images/svc-deep-conditioner.jpg",
+  "steamer-conditioner": "/images/svc-steamer.jpg",
+  "treatment-leave-in": "/images/svc-leave-in.jpg",
+  "semi-permanent-color": "/images/svc-semi-color.jpg",
+  "permanent-color": "/images/svc-perm-color.jpg",
+  "highlights": "/images/svc-highlights.jpg",
+  "keratin-botox": "/images/svc-keratin.jpg",
+  "relaxer": "/images/svc-relaxer.jpg",
+  "trim": "/images/svc-trim.jpg",
+  "layers": "/images/svc-layers.jpg",
+  "hair-style-cut": "/images/svc-haircut.jpg",
+  "glue-hair-extension": "/images/svc-glue-ext.jpg",
+  "glue-per-track": "/images/svc-glue-ext.jpg",
+  "clip-on-extensions": "/images/svc-clip-on.jpg",
+  "micro-ring-extensions": "/images/svc-sew-in.jpg",
+  "sew-in-extensions": "/images/svc-sew-in.jpg",
+  "extension-removal": "/images/svc-glue-ext.jpg",
+  "curl": "/images/svc-curl.jpg",
+};
+
+export function getServiceImage(slug: string): string {
+  return serviceImageMap[slug] || "/images/salon-hero.jpg";
+}
+
+// --- Category Images ---
+export const categoryImageMap: Record<string, string> = {
+  "wash-style": "/images/svc-blow-dry.jpg",
+  "conditioners-treatments": "/images/svc-deep-conditioner.jpg",
+  "color-chemical": "/images/svc-highlights.jpg",
+  "haircuts": "/images/svc-haircut.jpg",
+  "extensions-finishing": "/images/svc-sew-in.jpg",
+};
+
+export function getCategoryImage(slug: string): string {
+  return categoryImageMap[slug] || "/images/salon-hero.jpg";
+}
+
 // ─── Helpers ───
 export function formatPrice(cents: number): string {
   return `$${(cents / 100).toFixed(0)}`;

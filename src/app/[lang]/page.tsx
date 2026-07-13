@@ -7,6 +7,7 @@ import {
   specials,
   getFeaturedServices,
   formatPriceWithQualifier,
+  getServiceImage,
 } from "@/lib/data";
 import {
   ScrollReveal,
@@ -19,14 +20,6 @@ import {
   AnimatedCounter,
   ImageReveal,
 } from "@/components/ScrollAnimations";
-
-const serviceImages: Record<string, string> = {
-  "wash-and-set": "/images/wash-set.jpg",
-  "wash-and-blow-dry": "/images/salon-hero.jpg",
-  "semi-permanent-color": "/images/hair-color-process.jpg",
-  "highlights": "/images/color-highlights.jpg",
-  "keratin-botox": "/images/treatment.jpg",
-};
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -203,7 +196,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         {/* Horizontal scroll gallery for featured services */}
         <HorizontalPan>
           {featured.map((service, i) => {
-            const imgSrc = serviceImages[service.slug] || "/images/hero-blowout.jpg";
+            const imgSrc = getServiceImage(service.slug);
             return (
               <div key={service.slug} className="pan-panel px-8 md:px-16">
                 <div className="max-w-6xl w-full grid md:grid-cols-2 gap-8 lg:gap-16 items-center">

@@ -1,16 +1,8 @@
 import Link from "next/link";
 import { Locale } from "@/lib/types";
 import { uiString } from "@/lib/i18n";
-import { categories, getServicesByCategory, formatPriceWithQualifier } from "@/lib/data";
+import { categories, getServicesByCategory, formatPriceWithQualifier, getCategoryImage, getServiceImage } from "@/lib/data";
 import { ScrollReveal, StaggerReveal, ImageReveal, MarqueeStrip } from "@/components/ScrollAnimations";
-
-const categoryImages: Record<string, string> = {
-  "blowouts-sets": "/images/salon-hero.jpg",
-  "color": "/images/hair-color-process.jpg",
-  "cuts-styles": "/images/salon-stylist.jpg",
-  "treatments": "/images/treatment.jpg",
-  "extensions": "/images/braids-detail.jpg",
-};
 
 export default async function ServicesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -18,11 +10,13 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
 
   return (
     <>
-      {/* Hero — image background */}
+      {/* Hero */}
       <section className="relative min-h-[50dvh] flex items-end overflow-hidden">
         <img
           src="/images/salon-hero.jpg"
           alt=""
+          width={1600}
+          height={900}
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
         />
@@ -52,7 +46,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
       {/* Categories with services */}
       {categories.map((cat, catIndex) => {
         const catServices = getServicesByCategory(cat.slug);
-        const catImg = categoryImages[cat.slug] || "/images/salon-hero.jpg";
+        const catImg = getCategoryImage(cat.slug);
         const isEven = catIndex % 2 === 0;
 
         return (
@@ -65,6 +59,8 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
                     <img
                       src={catImg}
                       alt={cat.name[locale]}
+                      width={800}
+                      height={500}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
@@ -77,39 +73,52 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
                       {cat.name[locale]}
                     </h2>
                     <p className="text-warm-white/50 text-lg leading-relaxed">
-                      {locale === "es"
-                        ? `${catServices.length} servicios disponibles. Precios que comienzan desde la tarifa mostrada.`
-                        : `${catServices.length} services available. Prices start from the shown rate.`
-                      }
+                      {cat.description[locale]}
                     </p>
                   </ScrollReveal>
                 </div>
               </div>
 
-              {/* Service cards */}
+              {/* Service cards with images */}
               <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.08}>
-                {catServices.map((service) => (
-                  <Link
-                    key={service.slug}
-                    href={`/${locale}/book?service=${service.slug}`}
-                    className="service-card group block"
-                  >
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="font-display text-lg text-carbon group-hover:text-gold transition-colors">
-                          {service.name[locale]}
-                        </h3>
-                        <span className="text-gold font-display text-xl font-bold flex-shrink-0 ml-4">
-                          {formatPriceWithQualifier(service.basePriceCents, service.priceQualifier, locale)}
-                        </span>
+                {catServices.map((service) => {
+                  const imgSrc = getServiceImage(service.slug);
+                  return (
+                    <Link
+                      key={service.slug}
+                      href={`/${locale}/book?service=${service.slug}`}
+                      className="service-card group block"
+                    >
+                      {/* Service image */}
+                      <div className="h-44 relative overflow-hidden">
+                        <img
+                          src={imgSrc}
+                          alt={service.name[locale]}
+                          width={400}
+                          height={220}
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                        <div className="service-card-accent absolute bottom-0 left-0 z-10" />
                       </div>
-                      <p className="text-charcoal/50 text-sm leading-relaxed mb-4">
-                        {service.summary[locale]}
-                      </p>
-                      <div className="service-card-accent" />
-                    </div>
-                  </Link>
-                ))}
+                      {/* Service info */}
+                      <div className="p-5">
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="font-display text-lg text-carbon group-hover:text-gold transition-colors">
+                            {service.name[locale]}
+                          </h3>
+                          <span className="text-gold font-display text-lg font-bold flex-shrink-0 ml-3">
+                            {formatPriceWithQualifier(service.basePriceCents, service.priceQualifier, locale)}
+                          </span>
+                        </div>
+                        <p className="text-charcoal/50 text-sm leading-relaxed line-clamp-2">
+                          {service.summary[locale]}
+                        </p>
+                      </div>
+                    </Link>
+                  );
+                })}
               </StaggerReveal>
             </div>
           </section>
