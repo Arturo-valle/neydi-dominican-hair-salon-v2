@@ -72,6 +72,11 @@ const ui: Record<string, Record<Locale, string>> = {
   "home.visit.title": { en: "Come See Us", es: "Ven a Visitar" },
 
   "home.cta.title": { en: "Ready for Your Transformation?", es: "¿Lista para Tu Transformación?" },
+
+  // Home — Gallery Preview
+  "home.gallery.title": { en: "Our Work", es: "Nuestro Trabajo" },
+  "home.gallery.subtitle": { en: "Real results from real clients. Every style crafted with Dominican technique and care.", es: "Resultados reales de clientas reales. Cada estilo creado con técnica dominicana y dedicación." },
+  "home.gallery.viewAll": { en: "View Full Gallery", es: "Ver Galería Completa" },
   "home.cta.subtitle": {
     en: "Book your appointment or walk in during our hours. We're here to make you feel amazing.",
     es: "Reserva tu cita o ven directamente durante nuestro horario. Estamos aquí para que te sientas increíble.",

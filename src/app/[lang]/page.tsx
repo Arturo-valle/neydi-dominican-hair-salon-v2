@@ -292,7 +292,127 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </ScrollReveal>
       </section>
 
-      {/* ═══ ACT 6: VISIT — Split with Parallax ═══ */}
+      {/* ═══ ACT 6: GALLERY PREVIEW — Immersive Grid ═══ */}
+      <section className="section-dark py-28 md:py-36 relative overflow-hidden">
+        <div className="absolute inset-0" style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(13,59,59,0.15), transparent)",
+        }} aria-hidden="true" />
+
+        <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+          <ScrollReveal className="mb-16 text-center">
+            <div className="accent-line mx-auto mb-6" />
+            <h2 className="text-display-sm text-warm-white mb-3">{uiString("home.gallery.title", locale)}</h2>
+            <p className="text-warm-white/40 max-w-lg mx-auto">{uiString("home.gallery.subtitle", locale)}</p>
+          </ScrollReveal>
+
+          {/* Masonry-style grid with varied sizes */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 auto-rows-[200px] md:auto-rows-[240px]">
+            {/* Large feature image — top left */}
+            <ScrollReveal className="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden group cursor-pointer">
+              <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
+                <img
+                  src="/images/gallery/gal-01.jpg"
+                  alt="Dominican blowout result"
+                  width={800}
+                  height={1000}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-carbon/0 group-hover:bg-carbon/30 transition-colors duration-500 flex items-end">
+                  <span className="text-warm-white text-sm font-medium p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dominican Blowout</span>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            {/* Top right - small */}
+            <ScrollReveal delay={0.1} className="rounded-2xl overflow-hidden group cursor-pointer">
+              <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
+                <img
+                  src="/images/instagram/ig-03-braids-1.jpg"
+                  alt="Cornrow braids"
+                  width={600}
+                  height={600}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-carbon/0 group-hover:bg-carbon/30 transition-colors duration-500" />
+              </Link>
+            </ScrollReveal>
+
+            {/* Top right - small */}
+            <ScrollReveal delay={0.15} className="rounded-2xl overflow-hidden group cursor-pointer">
+              <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
+                <img
+                  src="/images/instagram/ig-02-soft-curls.jpg"
+                  alt="Soft curls styling"
+                  width={600}
+                  height={600}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-carbon/0 group-hover:bg-carbon/30 transition-colors duration-500" />
+              </Link>
+            </ScrollReveal>
+
+            {/* Bottom left */}
+            <ScrollReveal delay={0.2} className="rounded-2xl overflow-hidden group cursor-pointer">
+              <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
+                <img
+                  src="/images/gallery/gal-06.jpg"
+                  alt="Protective braids"
+                  width={600}
+                  height={600}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-carbon/0 group-hover:bg-carbon/30 transition-colors duration-500" />
+              </Link>
+            </ScrollReveal>
+
+            {/* Bottom center */}
+            <ScrollReveal delay={0.25} className="rounded-2xl overflow-hidden group cursor-pointer">
+              <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
+                <img
+                  src="/images/instagram/ig-01-silk-press.jpg"
+                  alt="Silk press result"
+                  width={600}
+                  height={600}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-carbon/0 group-hover:bg-carbon/30 transition-colors duration-500" />
+              </Link>
+            </ScrollReveal>
+
+            {/* Bottom right — wide */}
+            <ScrollReveal delay={0.3} className="md:col-span-2 rounded-2xl overflow-hidden group cursor-pointer">
+              <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
+                <img
+                  src="/images/gallery/gal-05.jpg"
+                  alt="Hair styling result"
+                  width={800}
+                  height={600}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-carbon/0 group-hover:bg-carbon/30 transition-colors duration-500 flex items-end">
+                  <span className="text-warm-white text-sm font-medium p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Color & Styling</span>
+                </div>
+              </Link>
+            </ScrollReveal>
+          </div>
+
+          {/* CTA */}
+          <ScrollReveal className="mt-12 text-center">
+            <Link href={`/${locale}/gallery`} className="btn-gold inline-flex items-center gap-3">
+              <span>{uiString("home.gallery.viewAll", locale)}</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9h12M11 5l4 4-4 4" /></svg>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ═══ ACT 7: VISIT — Split with Parallax ═══ */}
       <section className="section-dark py-0">
         <div className="grid md:grid-cols-2 min-h-[80dvh]">
           {/* Left: parallax image */}
