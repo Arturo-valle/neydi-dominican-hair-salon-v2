@@ -11,9 +11,10 @@
   --color-carbon: #0a0a0a;
   --color-deep-teal: #0d3b3b;
   --color-deep-teal-light: #145555;
-  --color-gold: #c4963d;
-  --color-gold-light: #d4a94e;
-  --color-gold-dim: rgba(196, 150, 61, 0.15);
+  --color-gold: #D4AF37;
+  --color-gold-light: #E8C84A;
+  --color-dark-gold: #A68C30;
+  --color-gold-dim: rgba(212, 175, 55, 0.15);
   --color-warm-white: #faf8f5;
   --color-charcoal: #2a2a2a;
   --color-smoke: #f0ede8;
@@ -85,8 +86,8 @@ h1, h2, h3, .font-display {
   inset: 0;
   background:
     radial-gradient(ellipse 80% 60% at 70% 40%, rgba(13, 59, 59, 0.5), transparent),
-    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(196, 150, 61, 0.1), transparent),
-    radial-gradient(ellipse 40% 40% at 90% 20%, rgba(196, 150, 61, 0.08), transparent);
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(212, 175, 55, 0.1), transparent),
+    radial-gradient(ellipse 40% 40% at 90% 20%, rgba(212, 175, 55, 0.08), transparent);
   animation: meshPulse 12s ease-in-out infinite alternate;
 }
 
@@ -98,7 +99,7 @@ h1, h2, h3, .font-display {
 
 /* Honeycomb texture */
 .honeycomb-bg {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23c4963d' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23D4AF37' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
 }
 
 /* Grain overlay — fixed, pointer-events-none */
@@ -182,7 +183,7 @@ h1, h2, h3, .font-display {
 
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(196, 150, 61, 0.25);
+  border-color: rgba(212, 175, 55, 0.25);
   transform: translateY(-4px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
@@ -197,7 +198,7 @@ h1, h2, h3, .font-display {
 }
 
 .service-card:hover {
-  border-color: rgba(196, 150, 61, 0.3);
+  border-color: rgba(212, 175, 55, 0.3);
   transform: translateY(-6px);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
 }
@@ -244,7 +245,7 @@ h1, h2, h3, .font-display {
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(196, 150, 61, 0.4);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
 }
 
 .btn-gold:hover::before {
@@ -289,7 +290,7 @@ h1, h2, h3, .font-display {
 
 .special-card {
   background: rgba(13, 59, 59, 0.2);
-  border: 1px solid rgba(196, 150, 61, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   border-radius: 20px;
   padding: 2.5rem;
   text-align: center;
@@ -297,7 +298,7 @@ h1, h2, h3, .font-display {
 }
 
 .special-card:hover {
-  border-color: rgba(196, 150, 61, 0.4);
+  border-color: rgba(212, 175, 55, 0.4);
   background: rgba(13, 59, 59, 0.3);
   transform: translateY(-4px);
 }
@@ -461,7 +462,7 @@ img {
 
 .divider-gold {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196, 150, 61, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -488,7 +489,7 @@ img {
   transition: opacity 0.3s ease;
   background: radial-gradient(
     circle at var(--glare-x, 50%) var(--glare-y, 50%),
-    rgba(196, 150, 61, 0.15) 0%,
+    rgba(212, 175, 55, 0.15) 0%,
     transparent 60%
   );
   z-index: 10;
@@ -542,8 +543,8 @@ img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(196, 150, 61, 0.2);
-  border: 1px solid rgba(196, 150, 61, 0.3);
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   color: #faf8f5;
   width: 48px;
   height: 48px;
@@ -557,8 +558,8 @@ img {
 }
 
 .lightbox-nav:hover {
-  background: rgba(196, 150, 61, 0.4);
-  border-color: #c4963d;
+  background: rgba(212, 175, 55, 0.4);
+  border-color: #D4AF37;
 }
 
 .lightbox-nav-prev { left: 1.5rem; }

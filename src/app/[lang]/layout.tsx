@@ -1,6 +1,7 @@
 import { Geist, Playfair_Display } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { Locale } from "@/lib/types";
 import { generateJsonLd } from "@/lib/jsonld";
 import { business } from "@/lib/data";
@@ -69,6 +70,7 @@ export default async function LangLayout({
         <Header locale={locale} />
         <main className="flex-1">{children}</main>
         <Footer locale={locale} />
+        <WhatsAppButton locale={locale} />
       </body>
     </html>
   );
