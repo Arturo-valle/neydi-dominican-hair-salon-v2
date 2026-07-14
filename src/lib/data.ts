@@ -472,11 +472,11 @@ export const serviceImageMap: Record<string, string> = {
   "layers": "/images/svc-layers.jpg",
   "hair-style-cut": "/images/svc-haircut.jpg",
   "glue-hair-extension": "/images/svc-glue-ext.jpg",
-  "glue-per-track": "/images/svc-glue-ext.jpg",
+  "glue-per-track": "/images/svc-glue-track.jpg",
   "clip-on-extensions": "/images/svc-clip-on.jpg",
-  "micro-ring-extensions": "/images/svc-sew-in.jpg",
+  "micro-ring-extensions": "/images/svc-micro-ring.jpg",
   "sew-in-extensions": "/images/svc-sew-in.jpg",
-  "extension-removal": "/images/svc-glue-ext.jpg",
+  "extension-removal": "/images/svc-ext-removal.jpg",
   "curl": "/images/svc-curl.jpg",
 };
 
@@ -486,11 +486,11 @@ export function getServiceImage(slug: string): string {
 
 // --- Category Images ---
 export const categoryImageMap: Record<string, string> = {
-  "wash-style": "/images/svc-blow-dry.jpg",
-  "conditioners-treatments": "/images/svc-deep-conditioner.jpg",
-  "color-chemical": "/images/svc-highlights.jpg",
-  "haircuts": "/images/svc-haircut.jpg",
-  "extensions-finishing": "/images/svc-sew-in.jpg",
+  "wash-style": "/images/cat-wash-style.jpg",
+  "conditioners-treatments": "/images/cat-conditioner.jpg",
+  "color-chemical": "/images/cat-color.jpg",
+  "haircuts": "/images/cat-cuts.jpg",
+  "extensions-finishing": "/images/cat-extensions.jpg",
 };
 
 export function getCategoryImage(slug: string): string {
