@@ -463,3 +463,141 @@ img {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(196, 150, 61, 0.2), transparent);
 }
+
+/* ═══════════════════════════════════════════════════
+   GALLERY: TiltCard + Lightbox + Masonry
+   ═══════════════════════════════════════════════════ */
+
+.tilt-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.tilt-card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.tilt-card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(196, 150, 61, 0.15) 0%,
+    transparent 60%
+  );
+  z-index: 10;
+}
+
+.tilt-card:hover .tilt-card-glare {
+  opacity: 1;
+}
+
+.gallery-masonry {
+  columns: 3;
+  column-gap: 1.25rem;
+}
+
+.gallery-masonry > * {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .gallery-masonry {
+    columns: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-masonry {
+    columns: 1;
+  }
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(20px);
+}
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(196, 150, 61, 0.2);
+  border: 1px solid rgba(196, 150, 61, 0.3);
+  color: #faf8f5;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-nav:hover {
+  background: rgba(196, 150, 61, 0.4);
+  border-color: #c4963d;
+}
+
+.lightbox-nav-prev { left: 1.5rem; }
+.lightbox-nav-next { right: 1.5rem; }
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #faf8f5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #faf8f5;
+}
+
+@media (max-width: 768px) {
+  .lightbox-nav { display: none; }
+  .lightbox-nav-prev,
+  .lightbox-nav-next {
+    display: none;
+  }
+}

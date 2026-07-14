@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Locale } from "@/lib/types";
 import { uiString } from "@/lib/i18n";
@@ -20,11 +20,6 @@ export default function BookPageClient({ locale }: { locale: Locale }) {
     notes: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-
-  useEffect(() => {
-    const svc = searchParams.get("service");
-    if (svc) setForm((f) => ({ ...f, service: svc }));
-  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
