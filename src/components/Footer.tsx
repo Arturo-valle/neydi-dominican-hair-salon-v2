@@ -11,11 +11,11 @@ export default function Footer({ locale }: { locale: Locale }) {
           {/* Brand */}
           <div>
             <img
-              src="/neydi-logo-header.png"
+              src="/neydi-logo-footer.png"
               alt="Neydi Dominican Hair Salon"
-              width={56}
-              height={56}
-              className="mb-3"
+              width={120}
+              height={120}
+              className="h-24 w-auto mb-3"
               loading="lazy"
             />
             <p className="text-warm-white/50 text-sm leading-relaxed">

@@ -16,6 +16,7 @@ import {
   StickyStack,
 } from "@/components/ScrollAnimations";
 import TiltCard from "@/components/TiltCard";
+import CinematicReveal from "@/components/CinematicReveal";
 import ZoomMorphLightbox from "@/components/ZoomMorphLightbox";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -77,16 +78,13 @@ const galleryImages: GalleryImage[] = Array.from({ length: 67 }, (_, i) => {
   const aspect = aspects[i % 5];
   return {
     src: `/images/gallery-${String(num).padStart(2, "0")}.webp`,
-    alt: {
-      en: `${cat.charAt(0).toUpperCase() + cat.slice(1)} result ${num}`,
-      es: `Resultado ${cat} ${num}`,
-    },
+    alt: { en: "", es: "" },
     category: cat,
     aspect,
     width: 1080,
     height: 1440,
   };
-});
+}).filter((_, i) => i !== 9); // Remove gallery-10 (salon image user rejected)
 
 const filters: Array<"all" | GalleryCategory> = ["all", "blowout", "braids", "color", "styling", "salon"];
 const GRID_COUNT = 25;
@@ -161,10 +159,12 @@ export default function GalleryPage({ params }: { params: Promise<{ lang: string
             {filtered.map((image) => {
               const originalIndex = galleryImages.findIndex((item) => item.src === image.src);
               return (
-                <TiltCard key={image.src} className="group mb-5 cursor-pointer rounded-[1.5rem] bg-white/5 border border-white/10 shadow-2xl shadow-black/30" onClick={() => setLightboxIndex(originalIndex)}>
-                  <motion.img layoutId={`gallery-image-${image.src}`} src={image.src} alt={image.alt[locale]} width={image.width} height={image.height} loading="lazy" className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${image.aspect}`} />
-                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-carbon/80 via-carbon/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"><div className="p-5"><p className="text-eyebrow mb-2">{t.filters[image.category]}</p><p className="text-warm-white text-lg font-medium">{image.alt[locale]}</p></div></div>
+                <CinematicReveal key={image.src} direction={["left", "right", "up", "center", "down"][originalIndex % 5] as "left" | "right" | "up" | "center" | "down"} delay={0.05 * (originalIndex % 6)}>
+                <TiltCard className="group mb-5 cursor-pointer rounded-[1.5rem] bg-white/5 border border-white/10 shadow-2xl shadow-black/30" onClick={() => setLightboxIndex(originalIndex)}>
+                  <motion.img layoutId={`gallery-image-${image.src}`} src={image.src} alt="" width={image.width} height={image.height} loading="lazy" className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${image.aspect}`} style={{ transform: "perspective(1000px)" }} />
+                  <div className="absolute inset-0 bg-carbon/0 group-hover:bg-carbon/20 transition-colors duration-300" />
                 </TiltCard>
+                </CinematicReveal>
               );
             })}
           </StaggerReveal>

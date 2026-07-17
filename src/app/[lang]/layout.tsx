@@ -1,5 +1,6 @@
 import { Geist, Playfair_Display } from "next/font/google";
 import Header from "@/components/Header";
+import ClientEffects from "@/components/ClientEffects";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Locale } from "@/lib/types";
@@ -62,6 +63,7 @@ export default async function LangLayout({
   return (
     <html lang={lang} className={`${geist.variable} ${playfair.variable}`}>
       <body className="min-h-screen flex flex-col" style={{ fontFamily: "var(--font-body)" }}>
+        <ClientEffects>
         <div className="grain-overlay" aria-hidden="true" />
         <script
           type="application/ld+json"
@@ -71,6 +73,7 @@ export default async function LangLayout({
         <main className="flex-1">{children}</main>
         <Footer locale={locale} />
         <WhatsAppButton locale={locale} />
+        </ClientEffects>
       </body>
     </html>
   );

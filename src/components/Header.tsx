@@ -20,7 +20,7 @@ export default function Header({ locale }: { locale: Locale }) {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-carbon/80 backdrop-blur-xl border-b border-white/[0.04]">
-        <nav className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
           {/* Logo */}
           <Link
             href={`/${locale}`}
@@ -29,9 +29,9 @@ export default function Header({ locale }: { locale: Locale }) {
             <img
               src="/neydi-logo-header.png"
               alt="Neydi Dominican Hair Salon"
-              width={56}
-              height={56}
-              className="transition-transform duration-300 group-hover:scale-105"
+              width={96}
+              height={96}
+              className="h-[76px] md:h-[88px] w-auto transition-transform duration-300 group-hover:scale-105"
               loading="eager"
             />
           </Link>
@@ -101,7 +101,7 @@ export default function Header({ locale }: { locale: Locale }) {
       </header>
 
       {/* Spacer for fixed header */}
-      <div className="h-16" />
+      <div className="h-24" />
 
       {/* Mobile bottom bar */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-carbon/90 backdrop-blur-xl border-t border-white/[0.06] flex">
