@@ -10,7 +10,14 @@ export default function Footer({ locale }: { locale: Locale }) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <h3 className="font-display text-2xl tracking-widest mb-3">NEYDI</h3>
+            <img
+              src="/neydi-logo-header.png"
+              alt="Neydi Dominican Hair Salon"
+              width={56}
+              height={56}
+              className="mb-3"
+              loading="lazy"
+            />
             <p className="text-warm-white/50 text-sm leading-relaxed">
               {uiString("footer.tagline", locale)}
             </p>

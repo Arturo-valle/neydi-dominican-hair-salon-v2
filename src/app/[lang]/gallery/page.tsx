@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Locale } from "@/lib/types";
@@ -42,6 +42,8 @@ const copy = {
     ctaSub: "Book your chair and let Neydi bring the movement, care, and finish your hair deserves.",
     cta: "Book Now",
     phone: "Call (301) 702-7294",
+    viewMore: "View More Photos",
+    viewLess: "Show Less",
   },
   es: {
     heroTitle: "Nuestro Trabajo",
@@ -61,45 +63,39 @@ const copy = {
     ctaSub: "Reserva tu silla y deja que Neydi le dé a tu cabello el movimiento, cuidado y acabado que merece.",
     cta: "Reservar Ahora",
     phone: "Llama al (301) 702-7294",
+    viewMore: "Ver Más Fotos",
+    viewLess: "Ver Menos",
   },
 } as const;
 
-const galleryImages: GalleryImage[] = [
-  { src: "/images/instagram/ig-01-silk-press.jpg", alt: { en: "Silk press blowout", es: "Silk press con blowout" }, category: "blowout", aspect: "aspect-[4/5]", width: 900, height: 1125 },
-  { src: "/images/instagram/ig-02-soft-curls.jpg", alt: { en: "Soft curls styling", es: "Peinado con rizos suaves" }, category: "styling", aspect: "aspect-square", width: 900, height: 900 },
-  { src: "/images/instagram/ig-03-braids-1.jpg", alt: { en: "Cornrow braids", es: "Trenzas cornrow" }, category: "braids", aspect: "aspect-[3/4]", width: 900, height: 1200 },
-  { src: "/images/instagram/ig-04-braids-2.jpg", alt: { en: "Braids detail", es: "Detalle de trenzas" }, category: "braids", aspect: "aspect-square", width: 900, height: 900 },
-  { src: "/images/instagram/ig-05-blowout-special.jpg", alt: { en: "Dominican blowout special", es: "Especial de blowout dominicano" }, category: "blowout", aspect: "aspect-[5/4]", width: 1000, height: 800 },
-  { src: "/images/gallery/gal-01.jpg", alt: { en: "Glossy Dominican blowout", es: "Blowout dominicano brillante" }, category: "blowout", aspect: "aspect-[16/10]", width: 1200, height: 750 },
-  { src: "/images/gallery/gal-02.jpg", alt: { en: "Smooth blowout finish", es: "Acabado liso de blowout" }, category: "blowout", aspect: "aspect-[4/5]", width: 900, height: 1125 },
-  { src: "/images/gallery/gal-03.jpg", alt: { en: "Bouncy salon blowout", es: "Blowout con movimiento" }, category: "blowout", aspect: "aspect-square", width: 900, height: 900 },
-  { src: "/images/gallery/gal-04.jpg", alt: { en: "Neydi salon chair", es: "Silla del salón Neydi" }, category: "salon", aspect: "aspect-[3/4]", width: 900, height: 1200 },
-  { src: "/images/gallery/gal-05.jpg", alt: { en: "Finished styling detail", es: "Detalle de peinado final" }, category: "styling", aspect: "aspect-[5/4]", width: 1000, height: 800 },
-  { src: "/images/gallery/gal-06.jpg", alt: { en: "Protective braid style", es: "Estilo protector con trenzas" }, category: "braids", aspect: "aspect-[4/5]", width: 900, height: 1125 },
-  { src: "/images/gallery/gal-07.jpg", alt: { en: "Braided hair pattern", es: "Patrón de trenzas" }, category: "braids", aspect: "aspect-square", width: 900, height: 900 },
-  { src: "/images/gallery/gal-08.jpg", alt: { en: "Long protective braids", es: "Trenzas protectoras largas" }, category: "braids", aspect: "aspect-[3/4]", width: 900, height: 1200 },
-  { src: "/images/gallery/gal-09.jpg", alt: { en: "Warm color dimension", es: "Dimensión de color cálido" }, category: "color", aspect: "aspect-square", width: 900, height: 900 },
-  { src: "/images/gallery/gal-10.jpg", alt: { en: "Hair color transformation", es: "Transformación de color" }, category: "color", aspect: "aspect-[4/5]", width: 900, height: 1125 },
-  { src: "/images/gallery/gal-11.jpg", alt: { en: "Silky blowout movement", es: "Movimiento sedoso de blowout" }, category: "blowout", aspect: "aspect-[5/4]", width: 1000, height: 800 },
-  { src: "/images/gallery/gal-12.jpg", alt: { en: "Salon styling station", es: "Estación de peinado" }, category: "salon", aspect: "aspect-square", width: 900, height: 900 },
-  { src: "/images/gallery/gal-13.jpg", alt: { en: "Salon products and care", es: "Productos y cuidado del salón" }, category: "salon", aspect: "aspect-[3/4]", width: 900, height: 1200 },
-  { src: "/images/gallery/gal-14.jpg", alt: { en: "Neydi salon interior", es: "Interior del salón Neydi" }, category: "salon", aspect: "aspect-[16/10]", width: 1200, height: 750 },
-  { src: "/images/gallery/gal-15.jpg", alt: { en: "Dimensional hair color", es: "Color de cabello dimensional" }, category: "color", aspect: "aspect-[4/5]", width: 900, height: 1125 },
-  { src: "/images/gallery/gal-16.jpg", alt: { en: "Soft wave styling", es: "Peinado con ondas suaves" }, category: "styling", aspect: "aspect-square", width: 900, height: 900 },
-  { src: "/images/gallery/gal-17.jpg", alt: { en: "Polished client style", es: "Estilo pulido de clienta" }, category: "styling", aspect: "aspect-[3/4]", width: 900, height: 1200 },
-  { src: "/images/gallery/gal-18.jpg", alt: { en: "Elegant finish styling", es: "Peinado elegante final" }, category: "styling", aspect: "aspect-[5/4]", width: 1000, height: 800 },
-  { src: "/images/gallery/gal-19.jpg", alt: { en: "Healthy shine styling", es: "Peinado con brillo saludable" }, category: "styling", aspect: "aspect-[4/5]", width: 900, height: 1125 },
-  { src: "/images/gallery/gal-20.jpg", alt: { en: "Warm salon moment", es: "Momento cálido en el salón" }, category: "salon", aspect: "aspect-square", width: 900, height: 900 },
-];
+// All 67 gallery images with assigned categories and aspect ratios
+const galleryImages: GalleryImage[] = Array.from({ length: 67 }, (_, i) => {
+  const num = i + 1;
+  const categories: GalleryCategory[] = ["blowout", "styling", "braids", "color", "salon"];
+  const aspects = ["aspect-[3/4]", "aspect-[4/5]", "aspect-square", "aspect-[4/5]", "aspect-[3/4]"];
+  const cat = categories[i % 5];
+  const aspect = aspects[i % 5];
+  return {
+    src: `/images/gallery-${String(num).padStart(2, "0")}.webp`,
+    alt: {
+      en: `${cat.charAt(0).toUpperCase() + cat.slice(1)} result ${num}`,
+      es: `Resultado ${cat} ${num}`,
+    },
+    category: cat,
+    aspect,
+    width: 1080,
+    height: 1440,
+  };
+});
 
 const filters: Array<"all" | GalleryCategory> = ["all", "blowout", "braids", "color", "styling", "salon"];
-const previewImages = galleryImages.slice(0, 6);
-const featured = [galleryImages[5], galleryImages[10], galleryImages[19]];
+const GRID_COUNT = 25;
 
 export default function GalleryPage({ params }: { params: Promise<{ lang: string }> }) {
   const [locale, setLocale] = useState<Locale>("en");
   const [activeFilter, setActiveFilter] = useState<"all" | GalleryCategory>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -115,13 +111,17 @@ export default function GalleryPage({ params }: { params: Promise<{ lang: string
   }, []);
 
   const t = copy[locale];
-  const filtered = activeFilter === "all" ? galleryImages : galleryImages.filter((image) => image.category === activeFilter);
+  const gridImages = showAll ? galleryImages : galleryImages.slice(0, GRID_COUNT);
+  const filtered = activeFilter === "all" ? gridImages : gridImages.filter((image) => image.category === activeFilter);
+  const previewImages = galleryImages.slice(0, 6);
+  const featured = [galleryImages[0], galleryImages[10], galleryImages[20]];
   const lightboxImages = galleryImages.map((image) => ({ src: image.src, alt: image.alt[locale], category: t.filters[image.category], caption: image.alt[locale] }));
 
   return (
     <>
+      {/* Hero */}
       <section ref={heroRef} className="relative min-h-[100dvh] flex items-end overflow-hidden bg-carbon">
-        <img src="/images/gallery/gal-01.jpg" alt="" width={1600} height={1000} className="absolute inset-0 h-full w-full object-cover scale-110" loading="eager" />
+        <img src="/images/gallery-01.webp" alt="" width={1600} height={1000} className="absolute inset-0 h-full w-full object-cover scale-110" loading="eager" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(13,59,59,0.75),transparent_35%),linear-gradient(110deg,rgba(10,10,10,0.98),rgba(10,10,10,0.72)_45%,rgba(13,59,59,0.55))]" aria-hidden="true" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-carbon to-transparent" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20 pb-24 md:pb-32">
@@ -132,6 +132,7 @@ export default function GalleryPage({ params }: { params: Promise<{ lang: string
         <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2" aria-hidden="true"><div className="h-16 w-px bg-gradient-to-b from-gold to-transparent" /><div className="mx-auto mt-2 h-2 w-2 rotate-45 border-b border-r border-gold/80" /></div>
       </section>
 
+      {/* Marquee + preview strip */}
       <section className="section-dark overflow-hidden border-y border-white/5 py-2">
         <MarqueeStrip text={t.marquee} speed={36} />
         <div className="marquee-strip pb-8 pt-2">
@@ -145,6 +146,7 @@ export default function GalleryPage({ params }: { params: Promise<{ lang: string
         </div>
       </section>
 
+      {/* Masonry Grid */}
       <section className="section-dark relative overflow-hidden py-20 md:py-32">
         <div className="absolute inset-0 honeycomb-bg opacity-10" aria-hidden="true" />
         <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
@@ -155,7 +157,7 @@ export default function GalleryPage({ params }: { params: Promise<{ lang: string
             </div>
           </div>
 
-          <StaggerReveal key={activeFilter} className="gallery-masonry" stagger={0.05}>
+          <StaggerReveal key={`${activeFilter}-${showAll}`} className="gallery-masonry" stagger={0.05}>
             {filtered.map((image) => {
               const originalIndex = galleryImages.findIndex((item) => item.src === image.src);
               return (
@@ -166,9 +168,20 @@ export default function GalleryPage({ params }: { params: Promise<{ lang: string
               );
             })}
           </StaggerReveal>
+
+          {/* Ver más / Ver menos button */}
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="btn-gold"
+            >
+              <span>{showAll ? t.viewLess : t.viewMore} {!showAll && `(${galleryImages.length - GRID_COUNT})`}</span>
+            </button>
+          </div>
         </div>
       </section>
 
+      {/* Featured transformations */}
       <section className="section-dark">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-20"><p className="text-eyebrow mb-4">{t.featured}</p></div>
         <StickyStack>
@@ -183,8 +196,9 @@ export default function GalleryPage({ params }: { params: Promise<{ lang: string
         </StickyStack>
       </section>
 
+      {/* CTA */}
       <section className="section-smoke split-cta">
-        <ParallaxImage src="/images/gallery/gal-11.jpg" alt="" width={1200} height={900} className="min-h-[55dvh] md:min-h-[80dvh]" speed={0.2} />
+        <ParallaxImage src="/images/gallery-11.webp" alt="" width={1200} height={900} className="min-h-[55dvh] md:min-h-[80dvh]" speed={0.2} />
         <div className="flex items-center px-6 py-20 md:px-12 lg:px-20"><ScrollReveal><div className="accent-line mb-6" /><h2 className="text-display-sm text-carbon mb-6">{t.ctaTitle}</h2><p className="text-charcoal/60 text-lg leading-relaxed mb-8 max-w-md">{t.ctaSub}</p><div className="flex flex-col gap-4 sm:flex-row"><Link href={`/${locale}/book`} className="btn-gold"><span>{t.cta}</span></Link><a href="tel:+13017027294" className="btn-ghost border-carbon/15 text-carbon hover:bg-carbon hover:text-warm-white">{t.phone}</a></div></ScrollReveal></div>
       </section>
 

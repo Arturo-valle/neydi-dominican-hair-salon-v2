@@ -24,19 +24,16 @@ export default function Header({ locale }: { locale: Locale }) {
           {/* Logo */}
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
           >
             <img
-              src="/neydi-logo-circle.png"
+              src="/neydi-logo-header.png"
               alt="Neydi Dominican Hair Salon"
-              width={44}
-              height={44}
-              className="rounded-full transition-transform duration-300 group-hover:scale-110"
+              width={56}
+              height={56}
+              className="transition-transform duration-300 group-hover:scale-105"
               loading="eager"
             />
-            <span className="font-display text-xl tracking-[0.25em] text-warm-white group-hover:text-gold transition-colors duration-300 hidden sm:inline">
-              NEYDI
-            </span>
           </Link>
 
           {/* Desktop nav */}
