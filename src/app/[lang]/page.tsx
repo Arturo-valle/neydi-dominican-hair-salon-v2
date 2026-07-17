@@ -32,17 +32,29 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="hero-section">
         <div className="hero-mesh" aria-hidden="true" />
 
-        {/* Parallax background image */}
+        {/* Video background with image fallback */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          {/* Mobile: static image fallback */}
           <img
             src="/images/salon-hero.jpg"
             alt=""
             width={1600}
             height={1000}
-            className="absolute inset-0 w-full h-full object-cover scale-110"
-            style={{ willChange: "transform" }}
+            className="absolute inset-0 w-full h-full object-cover md:hidden"
             loading="eager"
           />
+          {/* Desktop: video background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/hero-poster.jpg"
+            className="absolute inset-0 w-full h-full object-cover hidden md:block"
+            style={{ willChange: "transform" }}
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/85 to-carbon/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-carbon/50" />
         </div>
