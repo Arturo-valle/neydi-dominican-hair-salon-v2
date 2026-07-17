@@ -311,7 +311,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <ScrollReveal className="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden group cursor-pointer">
               <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
                 <img
-                  src="/images/gallery/gal-01.jpg"
+                  src="/images/gallery-01.webp"
                   alt="Dominican blowout result"
                   width={800}
                   height={1000}
@@ -328,7 +328,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <ScrollReveal delay={0.1} className="rounded-2xl overflow-hidden group cursor-pointer">
               <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
                 <img
-                  src="/images/instagram/ig-03-braids-1.jpg"
+                  src="/images/gallery-03.webp"
                   alt="Cornrow braids"
                   width={600}
                   height={600}
@@ -343,7 +343,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <ScrollReveal delay={0.15} className="rounded-2xl overflow-hidden group cursor-pointer">
               <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
                 <img
-                  src="/images/instagram/ig-02-soft-curls.jpg"
+                  src="/images/gallery-02.webp"
                   alt="Soft curls styling"
                   width={600}
                   height={600}
@@ -358,7 +358,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <ScrollReveal delay={0.2} className="rounded-2xl overflow-hidden group cursor-pointer">
               <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
                 <img
-                  src="/images/gallery/gal-06.jpg"
+                  src="/images/gallery-06.webp"
                   alt="Protective braids"
                   width={600}
                   height={600}
@@ -373,7 +373,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <ScrollReveal delay={0.25} className="rounded-2xl overflow-hidden group cursor-pointer">
               <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
                 <img
-                  src="/images/instagram/ig-01-silk-press.jpg"
+                  src="/images/gallery-04.webp"
                   alt="Silk press result"
                   width={600}
                   height={600}
@@ -388,7 +388,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <ScrollReveal delay={0.3} className="md:col-span-2 rounded-2xl overflow-hidden group cursor-pointer">
               <Link href={`/${locale}/gallery`} className="block w-full h-full relative">
                 <img
-                  src="/images/gallery/gal-05.jpg"
+                  src="/images/gallery-05.webp"
                   alt="Hair styling result"
                   width={800}
                   height={600}
