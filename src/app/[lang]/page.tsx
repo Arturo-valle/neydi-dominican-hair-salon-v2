@@ -476,7 +476,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="split-cta">
         {/* Left: image with parallax */}
         <ParallaxImage
-          src="/images/woman-profile.jpg"
+          src="/images/cta-portrait.jpg"
           alt=""
           width={800}
           height={1200}
