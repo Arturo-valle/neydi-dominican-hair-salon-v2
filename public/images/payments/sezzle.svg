@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" fill="none">
+  <rect width="200" height="80" rx="8" fill="#3D2B7E"/>
+  <circle cx="75" cy="30" r="8" fill="#47A8E5"/>
+  <circle cx="85" cy="25" r="6" fill="#F26A5D"/>
+  <circle cx="95" cy="30" r="7" fill="#FFB900"/>
+  <circle cx="85" cy="35" r="5" fill="#78C850"/>
+  <text x="100" y="60" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="white" font-weight="600">sezzle</text>
+</svg>

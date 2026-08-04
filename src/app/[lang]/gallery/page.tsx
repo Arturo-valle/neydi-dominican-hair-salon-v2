@@ -69,8 +69,8 @@ const copy = {
   },
 } as const;
 
-// All 67 gallery images with assigned categories and aspect ratios
-const galleryImages: GalleryImage[] = Array.from({ length: 67 }, (_, i) => {
+// All 74 gallery images with assigned categories and aspect ratios
+const galleryImages: GalleryImage[] = Array.from({ length: 74 }, (_, i) => {
   const num = i + 1;
   const categories: GalleryCategory[] = ["blowout", "styling", "braids", "color", "salon"];
   const aspects = ["aspect-[3/4]", "aspect-[4/5]", "aspect-square", "aspect-[4/5]", "aspect-[3/4]"];

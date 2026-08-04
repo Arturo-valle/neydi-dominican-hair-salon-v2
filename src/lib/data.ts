@@ -24,13 +24,13 @@ export const business = {
 };
 
 export const hours: BusinessHours[] = [
-  { day: "Monday", dayEs: "Lunes", open: "9:00 AM", close: "7:00 PM" },
-  { day: "Tuesday", dayEs: "Martes", open: "9:00 AM", close: "7:00 PM" },
-  { day: "Wednesday", dayEs: "Miércoles", open: "9:00 AM", close: "7:00 PM" },
-  { day: "Thursday", dayEs: "Jueves", open: "9:00 AM", close: "7:00 PM" },
-  { day: "Friday", dayEs: "Viernes", open: "9:00 AM", close: "7:00 PM" },
-  { day: "Saturday", dayEs: "Sábado", open: "7:00 AM", close: "6:00 PM" },
-  { day: "Sunday", dayEs: "Domingo", open: "8:00 AM", close: "4:00 PM" },
+  { day: "Monday", dayEs: "Lunes", open: "9:00 AM", close: "10:00 PM" },
+  { day: "Tuesday", dayEs: "Martes", open: "9:00 AM", close: "10:00 PM" },
+  { day: "Wednesday", dayEs: "Miércoles", open: "9:00 AM", close: "10:00 PM" },
+  { day: "Thursday", dayEs: "Jueves", open: "9:00 AM", close: "10:00 PM" },
+  { day: "Friday", dayEs: "Viernes", open: "9:00 AM", close: "10:00 PM" },
+  { day: "Saturday", dayEs: "Sábado", open: "7:00 AM", close: "10:00 PM" },
+  { day: "Sunday", dayEs: "Domingo", open: "8:00 AM", close: "8:00 PM" },
 ];
 
 // ─── Service Categories ───
@@ -79,6 +79,15 @@ export const categories: ServiceCategory[] = [
       es: "Volumen, largo y el toque final perfecto — desde extensiones hasta rizos.",
     },
     icon: "sparkles",
+  },
+  {
+    slug: "hair-extensions-sale",
+    name: { en: "Hair Extensions for Sale", es: "Extensiones de Pelo a la Venta" },
+    description: {
+      en: "Premium 100% human hair extensions — retail and wholesale. Body wave, loose wave and more.",
+      es: "Extensiones de cabello humano 100% premium — al detalle y al mayor. Body wave, loose wave y más.",
+    },
+    icon: "gift",
   },
 ];
 
@@ -423,13 +432,49 @@ export const services: Service[] = [
     featured: false,
     public: true,
   },
+  {
+    slug: "hair-extensions-body-wave",
+    category: "Hair Extensions for Sale",
+    categorySlug: "hair-extensions-sale",
+    name: { en: "Body Wave Extensions", es: "Extensiones Body Wave" },
+    summary: {
+      en: "100% human hair, double weft. Available retail & wholesale — perfect for sew-ins, clip-ons or custom pieces.",
+      es: "Cabello humano 100%, doble weft. Disponible al detalle y al mayor — perfectas para costura, clip-on o piezas personalizadas.",
+    },
+    basePriceCents: 0,
+    priceQualifier: "quoteRequired",
+    variables: {
+      en: "Pricing depends on length (14″–30″), quantity (single bundle to wholesale lot) and texture. Contact us for a custom quote.",
+      es: "El precio depende del largo (14″–30″), cantidad (pieza individual a lote mayoreo) y textura. Contáctanos para cotización.",
+    },
+    featured: true,
+    public: true,
+  },
+  {
+    slug: "hair-extensions-loose-wave",
+    category: "Hair Extensions for Sale",
+    categorySlug: "hair-extensions-sale",
+    name: { en: "Loose Wave Extensions", es: "Extensiones Loose Wave" },
+    summary: {
+      en: "Soft, natural wave pattern. 100% human hair — retail and wholesale pricing available.",
+      es: "Patrón de onda suave y natural. Cabello humano 100% — precios al detalle y al mayor disponibles.",
+    },
+    basePriceCents: 0,
+    priceQualifier: "quoteRequired",
+    variables: {
+      en: "Pricing depends on length, quantity and texture. Wholesale discounts for 10+ bundles.",
+      es: "El precio depende del largo, cantidad y textura. Descuentos por mayoreo en 10+ paquetes.",
+    },
+    featured: false,
+    public: true,
+  },
 ];
 
-// ─── Monday & Tuesday Specials ───
+// ─── Monday–Wednesday Specials ───
 export const specials: Special[] = [
   {
     slug: "special-wash-set",
-    name: { en: "Monday & Tuesday — Wash & Set", es: "Lunes y Martes — Lavado y Set" },
+    name: { en: "Monday & Wednesday — Wash & Set", es: "Lunes a Miércoles — Lavado y Set" },
     description: {
       en: "Start your week with a beautiful set at a special price.",
       es: "Comienza la semana con un hermoso set a un precio especial.",
@@ -437,20 +482,20 @@ export const specials: Special[] = [
     originalPriceCents: 4500,
     specialPriceCents: 3500,
     priceQualifier: "andUp",
-    validDays: "Monday–Tuesday",
+    validDays: "Monday–Wednesday",
     active: true, // toggle when confirmed with owner
   },
   {
     slug: "special-wash-blow-dry",
-    name: { en: "Monday & Tuesday — Wash & Blow Dry", es: "Lunes y Martes — Lavado y Brushing" },
+    name: { en: "Monday & Wednesday — Wash & Blow Dry", es: "Lunes a Miércoles — Lavado y Brushing" },
     description: {
       en: "Our signature blowout at a special weekday price.",
       es: "Nuestro blowout insignia a un precio especial entre semana.",
     },
     originalPriceCents: 6500,
-    specialPriceCents: 5500,
+    specialPriceCents: 5000,
     priceQualifier: "andUp",
-    validDays: "Monday–Tuesday",
+    validDays: "Monday–Wednesday",
     active: true, // toggle when confirmed with owner
   },
 ];
@@ -478,6 +523,8 @@ export const serviceImageMap: Record<string, string> = {
   "sew-in-extensions": "/images/svc-sew-in.jpg",
   "extension-removal": "/images/svc-ext-removal.jpg",
   "curl": "/images/svc-curl.jpg",
+  "hair-extensions-body-wave": "/images/svc-ext-retail-2.webp",
+  "hair-extensions-loose-wave": "/images/svc-ext-retail-1.webp",
 };
 
 export function getServiceImage(slug: string): string {
@@ -491,6 +538,7 @@ export const categoryImageMap: Record<string, string> = {
   "color-chemical": "/images/cat-color.jpg",
   "haircuts": "/images/cat-cuts.jpg",
   "extensions-finishing": "/images/cat-extensions.jpg",
+  "hair-extensions-sale": "/images/svc-ext-retail-3.webp",
 };
 
 export function getCategoryImage(slug: string): string {

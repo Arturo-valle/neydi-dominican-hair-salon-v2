@@ -54,10 +54,10 @@ const ui: Record<string, Record<Locale, string>> = {
 
   "home.specials.title": { en: "This Week's Specials", es: "Especiales de la Semana" },
   "home.specials.subtitle": {
-    en: "Start your week with us — special prices every Monday & Tuesday.",
-    es: "Comienza la semana con nosotros — precios especiales cada lunes y martes.",
+    en: "Start your week with us — special prices Monday through Wednesday.",
+    es: "Comienza la semana con nosotros — precios especiales de lunes a miércoles.",
   },
-  "home.specials.days": { en: "Monday & Tuesday", es: "Lunes y Martes" },
+  "home.specials.days": { en: "Monday – Wednesday", es: "Lunes – Miércoles" },
 
   "home.priceClarity.title": { en: "How Pricing Works", es: "Cómo Funcionan los Precios" },
   "home.priceClarity.subtitle": {
@@ -175,6 +175,10 @@ const ui: Record<string, Record<Locale, string>> = {
   "visit.walkins.desc": {
     en: "Walk-ins are welcome based on availability. For guaranteed service, we recommend booking in advance.",
     es: "Se aceptan visitas sin cita según disponibilidad. Para servicio garantizado, recomendamos reservar con anticipación.",
+  },
+  "visit.nightshift.note": {
+    en: "Last customer for the night shift is at 10 PM",
+    es: "Último cliente para el turno nocturno es a las 10 PM",
   },
   "visit.directions": { en: "Get Directions", es: "Cómo Llegar" },
   "visit.call": { en: "Call Us", es: "Llamar" },

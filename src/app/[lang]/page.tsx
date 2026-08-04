@@ -477,6 +477,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                   <p className="text-sm text-warm-white/50">
                     <strong className="text-warm-white">{uiString("visit.walkins", locale)}</strong>{" - "}{uiString("visit.walkins.desc", locale)}
                   </p>
+                  <p className="text-xs text-warm-white/40 mt-2 italic">
+                    ({uiString("visit.nightshift.note", locale)})
+                  </p>
                 </div>
               </ScrollReveal>
             </div>

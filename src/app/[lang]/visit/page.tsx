@@ -2,6 +2,7 @@ import { Locale } from "@/lib/types";
 import { uiString } from "@/lib/i18n";
 import { business, hours } from "@/lib/data";
 import { ScrollReveal, ParallaxImage, ImageReveal } from "@/components/ScrollAnimations";
+import PaymentMethods from "@/components/PaymentMethods";
 import Link from "next/link";
 
 export default async function VisitPage({ params }: { params: Promise<{ lang: string }> }) {
@@ -86,6 +87,9 @@ export default async function VisitPage({ params }: { params: Promise<{ lang: st
                   <p className="text-sm text-warm-white/50">
                     <strong className="text-warm-white">{uiString("visit.walkins", locale)}</strong>{" - "}{uiString("visit.walkins.desc", locale)}
                   </p>
+                  <p className="text-xs text-warm-white/40 mt-2 italic">
+                    ({uiString("visit.nightshift.note", locale)})
+                  </p>
                 </div>
               </ScrollReveal>
             </div>
@@ -112,6 +116,9 @@ export default async function VisitPage({ params }: { params: Promise<{ lang: st
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Payment Methods */}
+      <PaymentMethods locale={locale} />
 
       {/* CTA */}
       <section className="section-gradient py-24 md:py-32 relative overflow-hidden">

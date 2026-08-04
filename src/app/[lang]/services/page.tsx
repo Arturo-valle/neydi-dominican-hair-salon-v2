@@ -36,8 +36,8 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
       <section className="section-dark py-2 relative overflow-hidden border-y border-white/5">
         <MarqueeStrip
           text={locale === "es"
-            ? "Blowouts · Color · Cortes · Tratamientos · Extensiones"
-            : "Blowouts · Color · Cuts · Treatments · Extensions"
+            ? "Blowouts · Color · Cortes · Tratamientos · Extensiones · Venta de Extensiones"
+            : "Blowouts · Color · Cuts · Treatments · Extensions · Extensions for Sale"
           }
           speed={30}
         />
