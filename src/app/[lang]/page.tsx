@@ -55,8 +55,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           >
             <source src="/hero-video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/85 to-carbon/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-carbon/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-carbon/60 via-carbon/20 to-transparent" />
         </div>
 
         {/* Content — left-aligned, asymmetric */}
