@@ -473,21 +473,8 @@ export const services: Service[] = [
 // ─── Monday–Wednesday Specials ───
 export const specials: Special[] = [
   {
-    slug: "special-wash-set",
-    name: { en: "Monday & Wednesday — Wash & Set", es: "Lunes a Miércoles — Lavado y Set" },
-    description: {
-      en: "Start your week with a beautiful set at a special price.",
-      es: "Comienza la semana con un hermoso set a un precio especial.",
-    },
-    originalPriceCents: 4500,
-    specialPriceCents: 3500,
-    priceQualifier: "andUp",
-    validDays: "Monday–Wednesday",
-    active: true, // toggle when confirmed with owner
-  },
-  {
-    slug: "special-wash-blow-dry",
-    name: { en: "Monday & Wednesday — Wash & Blow Dry", es: "Lunes a Miércoles — Lavado y Brushing" },
+    slug: "special-blow-out",
+    name: { en: "Monday & Wednesday — Blow Out", es: "Lunes a Miércoles — Blow Out" },
     description: {
       en: "Our signature blowout at a special weekday price.",
       es: "Nuestro blowout insignia a un precio especial entre semana.",
