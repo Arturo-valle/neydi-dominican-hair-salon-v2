@@ -267,16 +267,25 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                       {formatPriceWithQualifier(special.originalPriceCents, special.priceQualifier, locale)}
                     </p>
                     <div className="text-gold font-display text-5xl md:text-6xl font-bold">
-                      <AnimatedCounter
-                        target={special.specialPriceCents / 100}
-                        prefix="$"
-                        duration={1.5}
-                      />
+                      {special.specialPriceCents === 0 ? (
+                        <span>FREE</span>
+                      ) : (
+                        <>
+                          <AnimatedCounter
+                            target={special.specialPriceCents / 100}
+                            prefix="$"
+                            duration={1.5}
+                          />
+                          {special.priceQualifier === "andUp" && (
+                            <span className="text-lg md:text-xl font-normal ml-1">& up</span>
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                   {/* Info */}
                   <div className="flex-1 text-center md:text-left">
-                    <p className="text-eyebrow mb-3 opacity-60">{uiString("home.specials.days", locale)}</p>
+                    <p className="text-eyebrow mb-3 opacity-60">{special.validDays}</p>
                     <h3 className="font-display text-xl text-warm-white mb-4">{special.name[locale]}</h3>
                     <Link href={`/${locale}/book?service=${special.slug.replace("special-", "")}`} className="btn-gold text-sm">
                       <span>{uiString("hero.cta", locale)}</span>

@@ -485,6 +485,19 @@ export const specials: Special[] = [
     validDays: "Monday–Wednesday",
     active: true, // toggle when confirmed with owner
   },
+  {
+    slug: "special-thursday-conditioner",
+    name: { en: "Thursday — Free Conditioner", es: "Jueves — Acondicionador Gratis" },
+    description: {
+      en: "Book any service on Thursday and get a deep conditioner treatment free.",
+      es: "Reserva cualquier servicio el jueves y recibe un acondicionador profundo gratis.",
+    },
+    originalPriceCents: 1500,
+    specialPriceCents: 0,
+    priceQualifier: "fixed",
+    validDays: "Thursday",
+    active: true, // toggle when confirmed with owner
+  },
 ];
 
 // --- Service Images ---
