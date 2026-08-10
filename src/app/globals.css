@@ -170,6 +170,18 @@ h1, h2, h3, .font-display {
 }
 
 /* ═══════════════════════════════════════
+   DATE INPUT — visible calendar picker
+   ═══════════════════════════════════════ */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7) sepia(1) saturate(3) hue-rotate(10deg);
+  cursor: pointer;
+  opacity: 0.8;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════
    GLASS CARDS
    ═══════════════════════════════════════ */
 
