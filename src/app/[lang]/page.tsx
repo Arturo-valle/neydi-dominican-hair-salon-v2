@@ -34,23 +34,23 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
         {/* Video background with image fallback */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-          {/* Mobile: static image fallback */}
+          {/* Static image fallback while video loads */}
           <img
             src="/images/salon-hero.jpg"
             alt=""
             width={1600}
             height={1000}
-            className="absolute inset-0 w-full h-full object-cover md:hidden"
+            className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
           />
-          {/* Desktop: video background */}
+          {/* Video background — all devices */}
           <video
             autoPlay
             loop
             muted
             playsInline
             poster="/images/hero-poster.jpg"
-            className="absolute inset-0 w-full h-full object-cover hidden md:block"
+            className="absolute inset-0 w-full h-full object-cover"
             style={{ willChange: "transform" }}
           >
             <source src="/hero-video.mp4" type="video/mp4" />
